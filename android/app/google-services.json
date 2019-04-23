@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "137927902007",
+    "firebase_url": "https://time-tracker-flutter-cou-9162c.firebaseio.com",
+    "project_id": "time-tracker-flutter-cou-9162c",
+    "storage_bucket": "time-tracker-flutter-cou-9162c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137927902007:android:b74c9fbbdc44fecc",
+        "android_client_info": {
+          "package_name": "com.example.burmese.time_tracker_flutter_course"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "137927902007-49tgbuqlal96si58t2jc95cul9tft02c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.burmese.time_tracker_flutter_course",
+            "certificate_hash": "1077fe9e1ba6d176f8275d03a730feb0df6f6c0b"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAigY_ttYxxWXM_QK_Wv5zNWaCvP8koRv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137927902007-vg7k3l507m7evf5ia8ea6vrh0s3u1m76.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "137927902007-6n79ejb8b91jn12gagpk5jfmbt5f2vrd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.burmese.timeTrackerFlutterCourse"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:137927902007:android:e4993a5c5b661384",
+        "android_client_info": {
+          "package_name": "com.example.burmese.time_tracker_flutter_course2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAigY_ttYxxWXM_QK_Wv5zNWaCvP8koRv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "137927902007-vg7k3l507m7evf5ia8ea6vrh0s3u1m76.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "137927902007-6n79ejb8b91jn12gagpk5jfmbt5f2vrd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.burmese.timeTrackerFlutterCourse"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
