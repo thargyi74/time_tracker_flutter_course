@@ -41,7 +41,8 @@ class _LandingPageState extends State<LandingPage> {
       stream: widget.auth.onAuthStateChanged,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          if (snapshot.hasData) if (_user == null) {
+          User user = snapshot.data;
+          if (user == null) {
             return SignInPage(
               auth: widget.auth,
               onSignIn: _updatedUser,
