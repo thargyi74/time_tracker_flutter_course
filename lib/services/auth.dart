@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:time_tracker_flutter_course/services/auth_base.dart';
 import 'user.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_login/flutter_facebook_login.dart';
 
 class Auth implements AuthBase {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
@@ -28,6 +29,8 @@ class Auth implements AuthBase {
   Future<void> signOut() async {
     final googleSignin = GoogleSignIn();
     await googleSignin.signOut();
+    final facebookLogin = FacebookLogin();
+    await facebookLogin.logOut();
     return await _firebaseAuth.signOut();
   }
 
@@ -67,6 +70,21 @@ class Auth implements AuthBase {
       return _userFromFirebase(currentUser);
     } else {
       throw StateError("Google Signin aborted");
+    }
+  }
+
+  Future<User> signInWithFacebook() async {
+    final FacebookLogin facebookLogin = FacebookLogin();
+    final FacebookLoginResult result = await facebookLogin
+        .logInWithReadPermissions(['email', 'public_profile']);
+    if (result.status == FacebookLoginStatus.loggedIn) {
+      final FacebookAccessToken myToken = result.accessToken;
+      final AuthCredential credential =
+          FacebookAuthProvider.getCredential(accessToken: myToken.token);
+      FirebaseUser user = await _firebaseAuth.signInWithCredential(credential);
+      return _userFromFirebase(user);
+    } else {
+      throw StateError("Missing Facebook access Token");
     }
   }
 }
