@@ -4,5 +4,7 @@ abstract class AuthBase {
   Future<User> currentUser();
   Future<User> signInAnonymously();
   Future<void> signOut();
+  Future<User> signInWithGoogle();
+  Future<User> signInWithFacebook();
   Stream<User> get onAuthStateChanged;
 }
