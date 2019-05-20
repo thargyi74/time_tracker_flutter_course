@@ -4,18 +4,31 @@ import 'package:flutter/material.dart';
 import 'package:time_tracker_flutter_course/app/sign_in_page/sign_in_button.dart';
 import 'package:time_tracker_flutter_course/app/sign_in_page/social_sign_in_button.dart';
 import 'package:time_tracker_flutter_course/services/auth_base.dart';
-import 'package:time_tracker_flutter_course/services/user.dart';
 
 class SignInPage extends StatelessWidget {
-  SignInPage({@required this.auth, @required this.onSignIn});
+  SignInPage({@required this.auth});
 
-  final Function(User) onSignIn;
   final AuthBase auth;
 
   Future<void> _signInWithAnonymously() async {
     try {
-      User user = await auth.signInAnonymously();
-      onSignIn(user);
+      await auth.signInAnonymously();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _signInWithGoogle() async {
+    try {
+      await auth.signInWithGoogle();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future<void> _signInWithFacebook() async {
+    try {
+      await auth.signInWithFacebook();
     } catch (e) {
       print(e.toString());
     }
@@ -58,7 +71,7 @@ class SignInPage extends StatelessWidget {
             text: 'Sign in with Facebook',
             textColor: Colors.white,
             color: Color(0xFF334D92),
-            onPressed: () {},
+            onPressed: _signInWithFacebook,
           ),
           SizedBox(
             height: 8.0,
@@ -102,9 +115,5 @@ class SignInPage extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _signInWithGoogle() {
-    // TODO: Write Code to Google Authentication
   }
 }
