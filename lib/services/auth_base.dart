@@ -6,5 +6,7 @@ abstract class AuthBase {
   Future<User> signInWithFacebook();
   Future<User> signInWithGoogle();
   Future<void> signOut();
+  Future<User> signInWithEmailAndPassword(String email, String password);
+  Future<User> createUserWithEmailAndPassword(String email, String password);
   Stream<User> get onAuthStateChanged;
 }

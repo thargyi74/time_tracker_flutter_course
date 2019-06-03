@@ -87,4 +87,17 @@ class Auth implements AuthBase {
       throw StateError("Missing Facebook access Token");
     }
   }
+
+  Future<User> signInWithEmailAndPassword(String email, String password) async {
+    final FirebaseUser user = await _firebaseAuth.signInWithEmailAndPassword(
+        email: email, password: password);
+    return _userFromFirebase(user);
+  }
+
+  Future<User> createUserWithEmailAndPassword(
+      String email, String password) async {
+    final FirebaseUser user = await _firebaseAuth
+        .createUserWithEmailAndPassword(email: email, password: password);
+    return _userFromFirebase(user);
+  }
 }
