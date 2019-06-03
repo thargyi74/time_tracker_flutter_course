@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:time_tracker_flutter_course/common_widgets/platform_widget.dart';
@@ -6,21 +8,70 @@ class PlatformAlertDialog extends PlatFormWidget {
   PlatformAlertDialog(
       {@required this.title,
       @required this.content,
-      @required this.defaultActionText});
+      @required this.defaultActionText})
+      : assert(title != null),
+        assert(content != null),
+        assert(defaultActionText != null);
 
   final String title;
   final String content;
   final String defaultActionText;
 
+  Future<bool> show(BuildContext context) async {
+    return Platform.isIOS
+        ? await showCupertinoDialog<bool>(
+            context: context,
+            builder: (context) => this,
+          )
+        : await showDialog<bool>(
+            context: context,
+            builder: (context) => this,
+          );
+  }
+
   @override
   Widget buildCupertinoWidget(BuildContext context) {
-    // TODO: implement buildCupertinoWidget
-    return null;
+    return CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: _buildActions(context),
+    );
   }
 
   @override
   Widget buildMaterialWidget(BuildContext context) {
-    // TODO: implement buildMaterialWidget
-    return null;
+    return AlertDialog(
+      title: Text(title),
+      content: Text(content),
+      actions: _buildActions(context),
+    );
+  }
+
+  List<Widget> _buildActions(BuildContext context) {
+    return [
+      PlatformAlertDialogAction(
+        onPressed: () => Navigator.of(context).pop(),
+        child: Text(defaultActionText),
+      ),
+    ];
+  }
+}
+
+class PlatformAlertDialogAction extends PlatFormWidget {
+  PlatformAlertDialogAction({this.child, this.onPressed});
+  final Widget child;
+  final VoidCallback onPressed;
+
+  @override
+  Widget buildCupertinoWidget(BuildContext context) {
+    return CupertinoDialogAction(
+      child: child,
+      onPressed: onPressed,
+    );
+  }
+
+  @override
+  Widget buildMaterialWidget(BuildContext context) {
+    return FlatButton(onPressed: onPressed, child: child);
   }
 }
