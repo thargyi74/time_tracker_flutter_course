@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time_tracker_flutter_course/app/sign_in_page/email_sign_in_model.dart';
 import 'package:time_tracker_flutter_course/common_widgets/form_submit_button.dart';
 import 'package:time_tracker_flutter_course/common_widgets/platform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth_base.dart';
@@ -11,8 +12,6 @@ class EmailSignInFormStateful extends StatefulWidget
   _EmailSignInFormStatefulState createState() =>
       _EmailSignInFormStatefulState();
 }
-
-enum EmailSignInFormType { signIn, register }
 
 class _EmailSignInFormStatefulState extends State<EmailSignInFormStateful> {
   final TextEditingController _emailController = TextEditingController();
@@ -111,7 +110,7 @@ class _EmailSignInFormStatefulState extends State<EmailSignInFormStateful> {
     FocusScope.of(context).requestFocus(newFocusNode);
   }
 
-  void _submit() async {
+  Future<void> _submit() async {
     setState(() {
       _submitted = true;
       _isLoading = true;
