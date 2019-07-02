@@ -24,6 +24,12 @@ class _HomePageState extends State<HomePage> {
   DateTime selectedDate = DateTime.now();
   TimeOfDay selectedTime = TimeOfDay.now();
 
+  int _groupValue = 0;
+  int _radioValue2 = 0;
+  int _radioValue3 = 0;
+  int _radioValue4 = 0;
+  int _radioValue5 = 0;
+
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
   }
@@ -158,10 +164,54 @@ class _HomePageState extends State<HomePage> {
                   label: Text('Select Time')),
             ],
           ),
+          Text('${selectedDate.toString()}'),
           SizedBox(
             height: 8.0,
           ),
           Text('Estimated total weight of wasts (Kg)'),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              Radio(
+                value: 0,
+                groupValue: _groupValue,
+                onChanged: (int e) => something(e),
+                activeColor: Colors.green,
+              ),
+              Text('1 - 5'),
+              Radio(
+                value: 1,
+                groupValue: _groupValue,
+                onChanged: (int e) => something(e),
+                activeColor: Colors.black,
+              ),
+              Text('5 - 10'),
+              Radio(
+                value: 2,
+                groupValue: _groupValue,
+                onChanged: (int e) => something(e),
+                activeColor: Colors.red,
+              ),
+              Text('10 - 20'),
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              RaisedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.photo),
+                label: Text('Photo'),
+              ),
+              SizedBox(
+                width: 8.0,
+              ),
+              RaisedButton.icon(
+                onPressed: () {},
+                icon: Icon(Icons.done_all),
+                label: Text('Confirm'),
+              ),
+            ],
+          ),
         ],
       ),
     );
@@ -186,5 +236,17 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       print(e.toString());
     }
+  }
+
+  void something(int e) {
+    setState(() {
+      if (e == 0) {
+        _groupValue = 0;
+      } else if (e == 1) {
+        _groupValue = 1;
+      } else if (e == 2) {
+        _groupValue = 2;
+      }
+    });
   }
 }
