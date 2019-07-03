@@ -1,10 +1,13 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time_tracker_flutter_course/common_widgets/platform_alert_dialog.dart';
 import 'package:time_tracker_flutter_course/services/auth_base.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:time_tracker_flutter_course/app/thank_you_page.dart';
+import 'package:image_picker/image_picker.dart';
 
 class HomePage extends StatefulWidget {
   static const LatLng _center = const LatLng(16.871311, 96.199379);
@@ -25,10 +28,16 @@ class _HomePageState extends State<HomePage> {
   TimeOfDay selectedTime = TimeOfDay.now();
 
   int _groupValue = 0;
-  int _radioValue2 = 0;
-  int _radioValue3 = 0;
-  int _radioValue4 = 0;
-  int _radioValue5 = 0;
+
+  File _image;
+
+  Future getImage() async {
+    File image = await ImagePicker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      _image = image;
+    });
+  }
 
   void _onMapCreated(GoogleMapController controller) {
     _controller.complete(controller);
@@ -164,7 +173,7 @@ class _HomePageState extends State<HomePage> {
                   label: Text('Select Time')),
             ],
           ),
-          Text('${selectedDate.toString()}'),
+          Text('${selectedDate.toString()} ${selectedTime.toString()}'),
           SizedBox(
             height: 8.0,
           ),
@@ -198,7 +207,7 @@ class _HomePageState extends State<HomePage> {
           Row(
             children: <Widget>[
               RaisedButton.icon(
-                onPressed: () {},
+                onPressed: getImage,
                 icon: Icon(Icons.photo),
                 label: Text('Photo'),
               ),
@@ -206,7 +215,12 @@ class _HomePageState extends State<HomePage> {
                 width: 8.0,
               ),
               RaisedButton.icon(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ThankYouPage()),
+                  );
+                },
                 icon: Icon(Icons.done_all),
                 label: Text('Confirm'),
               ),

@@ -28,6 +28,7 @@ dependencies:
   flutter_facebook_login: ^2.0.1
   provider: ^1.6.1
   google_maps_flutter: ^0.5.19
+  image_picker: ^0.6.0+10
 
 dev_dependencies:
   flutter_test:
